@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MyWriter {
+  +saveInCsvFile(String[], int[][])
+  +saveInCsvFile(AppData)
+}
+
+class MyReader {
+  + readCsvFile(String): AppData
+  - getDataInt(ArrayList<String[]>): int[][]
+}
+
+class AppData {
+  -String[] header
+  -int[][] data
+  +AppData()
+  +AppData(String[], int[][])
+  +getHeader(): String[]
+  +getData(): int[][]
+  +toString(): String
+}
+
+class Main {
+  +main(String[])
+}
+
+Main --..> AppData
+AppData --..> MyReader
+AppData --..> MyWriter
+Main --..> MyReader
+Main --..> MyWriter
+
+@enduml
